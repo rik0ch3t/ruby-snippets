@@ -20,6 +20,7 @@
 			"require 'thor'",
 			"",
 			"class CLI < Thor",
+			"\t$1",
 			"end",
 			"",
 			"CLI.start(ARGV)",
