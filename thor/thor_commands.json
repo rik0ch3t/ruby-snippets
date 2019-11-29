@@ -1,9 +1,60 @@
+
 {
-	"Create thor class_option": {
-		"prefix": "cls-com",
+	// Place your snippets for ruby here. Each snippet is defined under a snippet name and has a prefix, body and 
+	// description. The prefix is what is used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
+	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. Placeholders with the 
+	// same ids are connected.
+	// Example:
+	// "Print to console": {
+	// 	"prefix": "log",
+	// 	"body": [
+	// 		"console.log('$1');",
+	// 		"$2"
+	// 	],
+	// 	"description": "Log output to console"
+	// }
+	
+	"Create Thor CLI": {
+		"prefix": "thor-cli",
+		"body": [
+			"require 'thor'",
+			"",
+			"class CLI < Thor",
+			"end",
+			"",
+			"CLI.start(ARGV)",
+		],
+		"description": "Stub Thor CLI class"
+	},
+
+	"All options": {
+		"prefix": "thor-all",
 		"body": [
 			"desc \"command PARAM\", \"description for the command\"",
-			"option :option, :required => true, :desc => \"description\"",
+			"option :option,",
+			"\t:banner => \"UPCASE\"",
+			"\t:aliases => [\"-h, -al, -a, -df\"],",
+			"\t:required => true,",
+			"\t:type => boolean,",
+			"\t:type => numeric,",
+			"\t:type => array,",
+			"\t:type => hash,",
+			"\t:type => string,",
+			"\t:desc => \"description\",",
+			"def command(param),",
+			"\t#TODO",
+			"end",
+		],
+		"description": "All options reference"
+	},
+
+	"Create thor class_option": {
+		"prefix": "thor-cls",
+		"body": [
+			"desc \"command PARAM\", \"description for the command\"",
+			"option :option,",
+			"\t:required => true,",
+			"\t:desc => \"description\",",
 			"def command(param)",
 			"\t#TODO",
 			"end",
@@ -11,11 +62,22 @@
 		"description": "Global class level option"
 	},
 
+	"Add long desc to command": {
+		"prefix": "thor-desc",
+		"body": [
+			"long_desc <<-LONGDESC",
+			"\t\tLong description...",
+		  "\tLONGDESC",
+		],
+		"description": "Provide a long desc for command"
+	},
+
 	"Create thor command w/ one param": {
-		"prefix": "com",
+		"prefix": "thor-param",
 		"body": [
 			"desc \"command PARAM\", \"description for the command\"",
-			"option :option, :required => true, :desc => \"description\"",
+			"option :option,",
+			"\t:desc => \"description\",",
 			"def command(param)",
 			"\t#TODO",
 			"end",
@@ -24,10 +86,12 @@
 	},
 
 	"Create thor command w/ required param": {
-		"prefix": "com",
+		"prefix": "thor-param",
 		"body": [
 			"desc \"command PARAM\", \"description for the command\"",
-			"option :option, :required => true, :desc => \"description\"",
+			"option :option,",
+			"\t:required => true,",
+			"\t:desc => \"description\",",
 			"def temp(temp)",
 			"\t#TODO",
 			"end",
@@ -36,15 +100,21 @@
 	},
 
 	"Create thor command w/ required param and flag w/ default": {
-		"prefix": "com",
+		"prefix": "thor-flag",
 		"body": [
 			"desc \"command PARAM\", \"description for the command\"",
-			"option :option, :required => true, :desc => \"description\"",
-			"option :flag, :type => boolean, :default => false :desc => \"description\"",
+			"option :option,",
+			"\t:required => true,",
+			"\t:desc => \"description\",",
+			"option :flag,",
+			"\t:type => boolean,",
+			"\t:default => false,",
+			"\t:required => true,",
+			"\t:desc => \"description\",",
 			"def temp(temp)",
 			"\t#TODO",
 			"end",
 		],
 		"description": "One required param, one flag w/ default"
-	}
+	},
 }
