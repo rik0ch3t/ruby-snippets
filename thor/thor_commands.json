@@ -1,0 +1,50 @@
+{
+	"Create thor class_option": {
+		"prefix": "cls-com",
+		"body": [
+			"desc \"command PARAM\", \"description for the command\"",
+			"option :option, :required => true, :desc => \"description\"",
+			"def command(param)",
+			"\t#TODO",
+			"end",
+		],
+		"description": "Global class level option"
+	},
+
+	"Create thor command w/ one param": {
+		"prefix": "com",
+		"body": [
+			"desc \"command PARAM\", \"description for the command\"",
+			"option :option, :required => true, :desc => \"description\"",
+			"def command(param)",
+			"\t#TODO",
+			"end",
+		],
+		"description": "One param"
+	},
+
+	"Create thor command w/ required param": {
+		"prefix": "com",
+		"body": [
+			"desc \"command PARAM\", \"description for the command\"",
+			"option :option, :required => true, :desc => \"description\"",
+			"def temp(temp)",
+			"\t#TODO",
+			"end",
+		],
+		"description": "One required param"
+	},
+
+	"Create thor command w/ required param and flag w/ default": {
+		"prefix": "com",
+		"body": [
+			"desc \"command PARAM\", \"description for the command\"",
+			"option :option, :required => true, :desc => \"description\"",
+			"option :flag, :type => boolean, :default => false :desc => \"description\"",
+			"def temp(temp)",
+			"\t#TODO",
+			"end",
+		],
+		"description": "One required param, one flag w/ default"
+	}
+}
