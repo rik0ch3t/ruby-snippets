@@ -4,9 +4,10 @@ require 'fileutils'
 
 # Main CLI app
 class CLI < Thor
-  desc "activate [language]", "Activate snippets for the [language] language."
+
+  desc "include [language]", "Include snippets for the [language] language."
   option :project, :aliases => ["-p"], :type => :string, :required => true, :desc => "The project specific snippets to use."
-  def activate(language)
+  def include(language)
     if language != 'ruby'
       puts "Error: Language not supported."
       return 1
@@ -28,9 +29,9 @@ class CLI < Thor
     FileUtils.cp_r(snip_files_path, vscode_path)
   end
 
-  desc "deactivate [language]", "Deactivate snippets for the [language] language."
+  desc "exclude [language]", "Deactivate snippets for the [language] language."
   option :project, :aliases => ["-p"], :type => :string, :required => true, :desc => "The project specific snippets to use."
-  def deactivate(language)
+  def exclude(language)
     # TODO
   end
 end
