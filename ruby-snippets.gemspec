@@ -31,4 +31,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rake", "~> 10.0"
   spec.add_development_dependency "rspec", "~> 3.0"
   spec.add_dependency "thor", "~> 0.20"
+  spec.add_dependency "yard", "~> 0.9"
+  spec.add_dependency "os", "~> 0.9"
 end
