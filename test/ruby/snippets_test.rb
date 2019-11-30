@@ -1,3 +1,4 @@
+# typed: false
 require "test_helper"
 
 class Ruby::SnippetsTest < Minitest::Test

@@ -1,3 +1,4 @@
+# typed: true
 require 'os'
 
 # Filesystem module specific to this app.
