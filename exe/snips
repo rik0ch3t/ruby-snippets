@@ -1,0 +1,5 @@
+#!/usr/bin/env ruby
+
+require "snippets"
+
+Snippets::CLI.start(ARGV)

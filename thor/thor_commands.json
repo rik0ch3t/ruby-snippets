@@ -11,7 +11,7 @@
 	// 		"console.log('$1');",
 	// 		"$2"
 	// 	],
-	// 	"description": "Log output to console"
+	// 	"description": "Log output tåo console"
 	// }
 	
 	"Create Thor CLI": {
@@ -53,9 +53,7 @@
 		"prefix": "thor-cls",
 		"body": [
 			"desc \"command PARAM\", \"description for the command\"",
-			"option :option,",
-			"\t:required => true,",
-			"\t:desc => \"description\",",
+			"option :option, :required => true, :desc => \"description\"",
 			"def command(param)",
 			"\t#TODO",
 			"end",
@@ -77,8 +75,7 @@
 		"prefix": "thor-param",
 		"body": [
 			"desc \"command PARAM\", \"description for the command\"",
-			"option :option,",
-			"\t:desc => \"description\",",
+			"option :option, :desc => \"description\"",
 			"def command(param)",
 			"\t#TODO",
 			"end",
@@ -90,9 +87,7 @@
 		"prefix": "thor-param",
 		"body": [
 			"desc \"command PARAM\", \"description for the command\"",
-			"option :option,",
-			"\t:required => true,",
-			"\t:desc => \"description\",",
+			"option :option, :required => true, :desc => \"description\"",
 			"def temp(temp)",
 			"\t#TODO",
 			"end",
@@ -104,14 +99,8 @@
 		"prefix": "thor-flag",
 		"body": [
 			"desc \"command PARAM\", \"description for the command\"",
-			"option :option,",
-			"\t:required => true,",
-			"\t:desc => \"description\",",
-			"option :flag,",
-			"\t:type => boolean,",
-			"\t:default => false,",
-			"\t:required => true,",
-			"\t:desc => \"description\",",
+			"option :option, :required => true, :desc => \"description\",",
+			"option :flag, :type => boolean, :default => false, :required => true, desc => \"description\",",
 			"def temp(temp)",
 			"\t#TODO",
 			"end",
