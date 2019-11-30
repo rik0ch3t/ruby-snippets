@@ -1,6 +1,7 @@
 # typed: true
 require 'thor'
 require 'fileutils'
+require 'colorize'
 
 # Main CLI app
 class CLI < Thor
@@ -16,28 +17,28 @@ class CLI < Thor
   option :proj, :aliases => ["-p"], :type => :string, :required => true, :desc => "The project specific snippets to use."
   def include()
     if !@@supported_lang.has_key?(options[:lang])
-      puts "Error: '#{options[:lang].capitalize}' not supported."
+      puts "Error: '#{options[:lang].capitalize}' not supported.".colorize(:red)
       return 1
     end
 
     if !@@supported_lang[options[:lang]].include? options[:proj]
-      puts "Error: '#{options[:proj].capitalize}' snippets unavailable."
+      puts "Error: '#{options[:proj].capitalize}' snippets unavailable.".colorize(:red)
       return 1
     end
 
     # creat .vscode if it does not exist
     vscode_path = File.join(Dir.pwd, ".vscode")
     if !vscode_path
-      puts "Creating directory `.vscode` at #{vscode_path}..."
+      puts "Creating directory `.vscode` at #{vscode_path}...".colorize(:yellow)
       Dir.mkdir(File.join(Dir.pwd, ".vscode"))
     end
 
     # copy selected projects snippets to .vscode
     snip_files_path = File.join(Dir.pwd, "projects/#{options[:proj]}/.")
-    puts "Adding files to the `.vscode` directory..."
+    puts "Adding files to the `.vscode` directory...".colorize(:yellow)
     FileUtils.cp_r(snip_files_path, vscode_path)
 
-    puts "Done."
+    puts "Done!".colorize(:green)
   end
 
   desc "exclude", "Exclude snippets into the current workspace."
@@ -45,19 +46,19 @@ class CLI < Thor
   option :proj, :aliases => ["-p"], :type => :string, :required => true, :desc => "The project specific snippets to use."
   def exclude()
     if options[:lang] != 'ruby'
-      puts "Error: Language not supported."
+      puts "Error: Language not supported.".colorize(:red)
       return 1
     end
 
     if options[:proj].nil?
-      puts "Error: Project type not provided."
+      puts "Error: Project type not provided.".colorize(:red)
       return 1
     end
 
     # creat .vscode if it does not exist
     vscode_path = File.join(Dir.pwd, ".vscode/#{options[:proj]}.code-snippets")
     if !vscode_path
-      puts "Error: .vscode does not exist."
+      puts "Error: .vscode does not exist.".colorize(:red)
       return 1
     end
 

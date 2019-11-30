@@ -34,5 +34,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "sorbet-runtime"
   spec.add_dependency "thor", "~> 0.20"
   spec.add_dependency "yard", "~> 0.9"
-  spec.add_dependency "os", "~> 0.9"
+  spec.add_dependency "colorize", "0.8.1"
 end

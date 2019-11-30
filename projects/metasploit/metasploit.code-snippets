@@ -1,0 +1,19 @@
+
+{
+	"Require msf/core": {
+		"prefix": "msf-core",
+		"body": [
+			"require 'msf/core'",
+		],
+		"description": "Adds require for msf/core"
+  },
+  "Initialize module": {
+		"prefix": "msf-mod",
+		"body": [
+			"class MetasploitModule < Msf::Exploit::Remote",
+      "\tRank = NormalRanking",
+      "end",
+		],
+		"description": "Adds require for msf/core"
+  },
+}
