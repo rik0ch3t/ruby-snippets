@@ -4,6 +4,7 @@
 		"prefix": "thor-cli",
 		"body": [
 			"require 'thor'",
+			"require 'colorize'",
 			"",
 			"class CLI < Thor",
 			"\t$1",

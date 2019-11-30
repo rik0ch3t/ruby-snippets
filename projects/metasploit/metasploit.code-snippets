@@ -7,11 +7,68 @@
 		],
 		"description": "Adds require for msf/core"
   },
-  "Initialize module": {
-		"prefix": "msf-mod",
+
+  "Class skeleton module": {
+		"prefix": "msf-cls",
 		"body": [
 			"class MetasploitModule < Msf::Exploit::Remote",
       "\tRank = NormalRanking",
+      "end",
+		],
+		"description": "Adds require for msf/core"
+  },
+
+  "Initialize method": {
+		"prefix": "msf-init",
+		"body": [
+      "def initialize(info={})",
+      "\tsuper(update_info(info,",
+      "\t'Name'           => \"[Vendor] [Software] [Root Cause] [Vulnerability type]\",",
+      "\t'Description'    => %q{",
+      "\t\tSay something that the user might need to know",
+      "\t},",
+      "\t'License'        => MSF_LICENSE,",
+      "\t'Author'         => [ 'Name' ],",
+      "\t'References'     =>",
+      "\t\t[",
+      "\t\t\t[ 'URL', '' ]",
+      "\t\t],",
+      "\t'Platform'       => 'win',",
+      "\t'Targets'        =>",
+      "\t\t[",
+      "\t\t\t[ 'System or software version',",
+      "\t\t\t\t{",
+      "\t\t\t\t\t'Ret' => 0x41414141 # This will be available in `target.ret`",
+      "\t\t\t\t}",
+      "\t\t\t]",
+      "\t\t],",
+      "\t'Payload'        =>",
+      "\t\t{",
+      "\t\t\t'BadChars' => \"\\x00\"",
+      "\t\t},",
+      "\t'Privileged'     => false,",
+      "\t'DisclosureDate' => \"\",",
+      "\t'DefaultTarget'  => 0))",
+      "end",
+		],
+		"description": "Generic msf initialize method"
+  },
+
+  "Check Method": {
+		"prefix": "msf-chk",
+		"body": [
+			"def check",
+      "\t# For the check command",
+      "end",
+		],
+		"description": "Adds require for msf/core"
+  },
+
+  "Exploit Method": {
+		"prefix": "msf-ex",
+		"body": [
+			"def exploit",
+      "\t# Main function",
       "end",
 		],
 		"description": "Adds require for msf/core"
