@@ -17,7 +17,7 @@ class CLI < Thor
   option :lang, :aliases => ["-l"], :type => :string, :required => true, :desc => "The language specific snippets to use."
   option :proj, :aliases => ["-p"], :type => :string, :required => true, :desc => "The project specific snippets to use."
   def include()
-    puts "Adding files to the `.vscode` directory...".colorize(:yellow)
+    puts "Adding '#{options[:proj].capitalize}' snippets to the `.vscode` directory...".colorize(:yellow)
     validate_input(options[:lang], options[:proj])
     create_vscode_dir()
     copy_file_to_vscode(options[:proj])
@@ -28,8 +28,10 @@ class CLI < Thor
   option :lang, :aliases => ["-l"], :type => :string, :required => true, :desc => "The language specific snippets to use."
   option :proj, :aliases => ["-p"], :type => :string, :required => true, :desc => "The project specific snippets to use."
   def exclude()
+    puts "Removing '#{options[:proj].capitalize}' snippets...".colorize(:yellow)
     validate_input(options[:lang], options[:proj])
     remove_file_from_vscode(options[:proj])
+    puts "Done!".colorize(:green)
   end
 
   private
@@ -52,7 +54,7 @@ class CLI < Thor
   def create_vscode_dir()
     if !@@vscode_path
       puts "Creating directory `.vscode` at #{vscode_path}...".colorize(:yellow)
-      Dir.mkdir(File.join(Dir.pwd, ".vscode"))
+      Dir.mkdir(@@vscode_path)
     end
   end
 
@@ -64,7 +66,7 @@ class CLI < Thor
 
   # Remove selected project snippets from .vscode
   def remove_file_from_vscode(proj)
-    FileUtils.rm_r(@@vscode_path)
+    FileUtils.rm_r("#{@@vscode_path}/#{proj}.code-snippets")
   end
 
 end
