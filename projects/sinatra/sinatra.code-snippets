@@ -1,0 +1,143 @@
+
+{
+  // get '/foo' do
+  //   # Does not match "GET /foo/"
+  // end
+
+  // Basic Routes
+	"Sinatra GET route": {
+		"prefix": "sin-get",
+		"body": [
+      "get '/' do",
+      "\t # body",
+      "end",
+		],
+		"description": "Sinatra GET route"
+  },
+
+	"Sinatra POST route": {
+		"prefix": "sin-post",
+		"body": [
+      "post '/' do",
+      "\t # body",
+      "end",
+		],
+		"description": "Sinatra POST route"
+  },
+
+  "Sinatra PUT route": {
+		"prefix": "sin-put",
+		"body": [
+      "put '/' do",
+      "\t # body",
+      "end",
+		],
+		"description": "Sinatra PUT route"
+  },
+
+	"Sinatra PATCH route": {
+		"prefix": "sin-patch",
+		"body": [
+      "patch '/' do",
+      "\t # body",
+      "end",
+		],
+		"description": "Sinatra PATCH route"
+  },
+
+  "Sinatra DELETE route": {
+		"prefix": "sin-del",
+		"body": [
+      "delete '/' do",
+      "\t # body",
+      "end",
+		],
+		"description": "Sinatra DELETE route"
+  },
+
+	"Sinatra OPTIONS route": {
+		"prefix": "sin-options",
+		"body": [
+      "options '/' do",
+      "\t # body",
+      "end",
+		],
+		"description": "Sinatra OPTIONS route"
+  },
+
+  "Sinatra LINK route": {
+		"prefix": "sin-lnk",
+		"body": [
+      "link '/' do",
+      "\t # body",
+      "end",
+		],
+		"description": "Sinatra LINK route"
+  },
+
+	"Sinatra UNLINK route": {
+		"prefix": "sin-unlink",
+		"body": [
+      "unlink '/' do",
+      "\t # body",
+      "end",
+		],
+		"description": "Sinatra UNLINK route"
+  },
+
+	"Sinatra block-param route": {
+		"prefix": "sin-param",
+		"body": [
+      "get '/$1/:$2' do |n|",
+      "\t # \"#{n}\"",
+      "end",
+		],
+		"description": "Sinatra block-param route"
+  },
+
+  "Sinatra splat-block-param route": {
+		"prefix": "sin-splat",
+		"body": [
+      "get '/$1/*.*' do |path, ext|",
+      "\t # \"[path, ext]\"",
+      "end",
+		],
+		"description": "Sinatra splat block-param route"
+  },
+
+  "Sinatra regex-block route": {
+		"prefix": "sin-re",
+		"body": [
+      "# Matches \"GET /meta/hello/world\", \"GET /hello/world/1234\" etc.",
+      "get %r{/hello/([\\w]+)} do |c|",
+      "\t # \"\"Hello, #{c}!\"\"",
+      "end",
+		],
+		"description": "Sinatra regex-block route"
+  },
+
+  "Sinatra optional params route": {
+		"prefix": "sin-opt",
+		"body": [
+      "get '/posts/:format?' do",
+      "\t # matches \"GET /posts/\" and any extension \"GET /posts/json\", \"GET /posts/xml\" etc",
+      "end",
+		],
+		"description": "Sinatra optional params route"
+  },
+
+  "Sinatra query params route": {
+		"prefix": "sin-opt",
+		"body": [
+      "get '/posts' do",
+      "\t # matches \"GET /posts?title=foo&author=bar\"",
+      "\ttitle = params['title']",
+      "\tauthor = params['author']",
+      "\t# uses title and author variables; query is optional to the /posts route",
+      "end",
+		],
+		"description": "Sinatra query params route"
+  },
+
+  // Conditions
+}
