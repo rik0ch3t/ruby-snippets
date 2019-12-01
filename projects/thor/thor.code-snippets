@@ -39,11 +39,7 @@
 	"Create thor class_option": {
 		"prefix": "thor-cls",
 		"body": [
-			"desc \"command PARAM\", \"description for the command\"",
-			"option :option, :required => true, :desc => \"description\"",
-			"def command(param)",
-			"\t#TODO",
-			"end",
+			"class_option :option_name, :type => :boolean",
 		],
 		"description": "Global class level option"
 	},
