@@ -45,13 +45,13 @@ class CLI < Thor
   option :lang, :aliases => ["-l"], :type => :string, :required => true, :desc => "The language specific snippets to use."
   option :proj, :aliases => ["-p"], :type => :string, :required => true, :desc => "The project specific snippets to use."
   def exclude()
-    if options[:lang] != 'ruby'
-      puts "Error: Language not supported.".colorize(:red)
+    if !@@supported_lang.has_key?(options[:lang])
+      puts "Error: '#{options[:lang].capitalize}' not supported.".colorize(:red)
       return 1
     end
 
-    if options[:proj].nil?
-      puts "Error: Project type not provided.".colorize(:red)
+    if !@@supported_lang[options[:lang]].include? options[:proj]
+      puts "Error: '#{options[:proj].capitalize}' snippets unavailable.".colorize(:red)
       return 1
     end
 
