@@ -7,7 +7,7 @@ require 'colorize'
 class CLI < Thor
 
   @@supported_lang = {
-    "ruby" => ["thor", "metasploit"],
+    "ruby" => ["thor", "metasploit", "sinatra"],
     "python" => [],
     "rust" => [],
   }

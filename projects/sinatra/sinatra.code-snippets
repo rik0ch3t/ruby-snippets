@@ -140,4 +140,13 @@
   },
 
   // Conditions
+  "Sinatra GET route - Agent condition": {
+		"prefix": "sin-agent",
+		"body": [
+      "get '/' :agent => /Songbird (\\d\\.\\d)[\\d\/]*?/ do",
+      "\t\"You're using Songbird version #{params['agent'][0]}\"",
+      "end",
+		],
+		"description": "Sinatra GET route w/ agent cond"
+  },
 }
