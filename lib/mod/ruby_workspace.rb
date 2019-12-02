@@ -47,7 +47,6 @@ class RubyWorkspace
     workspace_path = File.join(Dir.pwd, '.vscode')
     return if workspace_path
 
-    puts "Creating directory `.vscode` at #{workspace_path}...".colorize(:yellow)
     Dir.mkdir(workspace_path)
   end
 end
