@@ -5,8 +5,8 @@ require 'colorize'
 
 # Main CLI app
 class CLI < Thor
-  # globals
-  @@vscode_path = File.join(Dir.pwd, '.vscode')
+  @@workspace_path = File.join(Dir.pwd, '.vscode')
+
   @@supported_lang = {
     'ruby' => %w[thor metasploit sinatra],
     'python' => [],
@@ -52,20 +52,20 @@ class CLI < Thor
 
   # Creates a .vscode directory if it does not exist.
   def create_vscode_dir
-    return if @@vscode_path
+    return if @@workspace_path
 
-    puts "Creating directory `.vscode` at #{vscode_path}...".colorize(:yellow)
-    Dir.mkdir(@@vscode_path)
+    puts "Creating directory `.vscode` at #{workspace_path}...".colorize(:yellow)
+    Dir.mkdir(@@workspace_path)
   end
 
   # Copy selected project snippets to .vscode
   def copy_file_to_vscode(proj)
     snip_files_path = File.join(Dir.pwd, "projects/#{proj}/.")
-    FileUtils.cp_r(snip_files_path, @@vscode_path)
+    FileUtils.cp_r(snip_files_path, @@workspace_path)
   end
 
   # Remove selected project snippets from .vscode
   def remove_file_from_vscode(proj)
-    FileUtils.rm_r("#{@@vscode_path}/#{proj}.code-snippets")
+    FileUtils.rm_r("#{@@workspace_path}/#{proj}.code-snippets")
   end
 end
