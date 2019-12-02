@@ -13,11 +13,9 @@ class CLI < Thor
     'rust' => []
   }
 
-  # Common options
-  class_option :lang, aliases: ['-l'], type: :string, required: true, desc: 'The language specific snippets to use.'
-  class_option :proj, aliases: ['-p'], type: :string, required: true, desc: 'The project specific snippets to use.'
-
   desc 'include', 'Include snippets into the current workspace.'
+  option :lang, aliases: ['-l'], type: :string, required: true, desc: 'The language specific snippets to use.'
+  option :proj, aliases: ['-p'], type: :string, required: true, desc: 'The project specific snippets to use.'
   def include
     puts "Adding '#{options[:proj].capitalize}' snippets to the `.vscode` directory...".colorize(:yellow)
 
@@ -28,12 +26,26 @@ class CLI < Thor
   end
 
   desc 'exclude', 'Exclude snippets into the current workspace.'
+  option :lang, aliases: ['-l'], type: :string, required: true, desc: 'The language specific snippets to use.'
+  option :proj, aliases: ['-p'], type: :string, required: true, desc: 'The project specific snippets to use.'
   def exclude
     puts "Removing '#{options[:proj].capitalize}' snippets...".colorize(:yellow)
 
     remove_file_from_vscode(options[:proj])
 
     puts 'Done!'.colorize(:green)
+  end
+
+  desc 'workspace', 'Add workspace specific settings.'
+  option :lang, aliases: ['-l'], type: :string, required: true, desc: 'The language specific settings to use.'
+  def workspace
+    puts 'Updating Workspace settings...'.colorize(:yellow)
+  end
+
+  desc 'user', 'Add user specific settings.'
+  option :profile, type: :string, required: true, desc: 'General User specific settings to activate.'
+  def user
+    puts 'Updating User settings...'.colorize(:yellow)
   end
 
   private
