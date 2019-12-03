@@ -29,8 +29,13 @@ class CLI < Thor
 
   desc 'setup LANG', 'Setup VScode for language specific development.'
   def setup(lang)
-    @lang_obj = Factory.create(lang)
-    @lang_obj.install_ext
+    begin
+      @lang_obj = Factory.create(lang)
+      @lang_obj.install_ext
+    rescue Exception => e
+      puts "Exception: #{e}"
+      return 1
+    end
   end
 
   desc 'teardown LANG', 'Teardown VScode for language specific development.'

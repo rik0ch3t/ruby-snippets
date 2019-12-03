@@ -7,7 +7,7 @@ class Factory
     when 'ruby'
       RubyWorkspace.new
     else
-      raise 'Unsupported language.'
+      raise Exception.new('Unsupported language!')
     end
   end
 end
