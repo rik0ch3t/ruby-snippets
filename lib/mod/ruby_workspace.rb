@@ -18,7 +18,7 @@ class RubyWorkspace
   # Copy selected project snippets to .vscode
   def add_snippet(proj)
     workspace_path = File.join(Dir.pwd, '.vscode')
-    snip_files_path = File.join(Dir.pwd, "projects/#{proj}/.")
+    snip_files_path = File.join(Dir.pwd, "projects/#{proj}/#{proj}.code-snippets")
     FileUtils.cp_r(snip_files_path, workspace_path)
   end
 

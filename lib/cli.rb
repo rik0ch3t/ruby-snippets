@@ -6,41 +6,33 @@ require 'mod/factory'
 
 # Main CLI app
 class CLI < Thor
-  desc 'include', 'Add snippets to the current workspace.'
-  option :lang, aliases: ['-l'], type: :string, required: true, desc: 'The language specific snippets to use.'
-  option :proj, aliases: ['-p'], type: :string, required: true, desc: 'The project specific snippets to use.'
-  def include
-    puts "Adding '#{options[:proj].capitalize}' snippets to the `.vscode` directory...".colorize(:yellow)
-    @lang_obj = Factory.create(options[:lang])
+  desc 'setup LANG', 'Setup VScode for language specific development.'
+  option :proj, aliases: ['-p'], type: :string, desc: 'The project specific snippets to use.'
+  option :add_ext, type: :boolean, desc: 'Add extensions.'
+  def setup(lang)
+    @lang_obj = Factory.create(lang)
+
+    puts "Adding '#{options[:proj].capitalize}' snippets to the workspace".colorize(:yellow)
     @lang_obj.create_vscode_dir
     @lang_obj.add_snippet(options[:proj])
-    puts 'Done!'.colorize(:green)
-  end
 
-  desc 'exclude', 'Remove snippets from the current workspace.'
-  option :lang, aliases: ['-l'], type: :string, required: true, desc: 'The language specific snippets to use.'
-  option :proj, aliases: ['-p'], type: :string, required: true, desc: 'The project specific snippets to use.'
-  def exclude
-    puts "Removing '#{options[:proj].capitalize}' snippets...".colorize(:yellow)
-    @lang_obj = Factory.create(options[:lang])
-    @lang_obj.remove_snippet(options[:proj])
-    puts 'Done!'.colorize(:green)
-  end
+    return unless options[:add_ext]
 
-  desc 'setup LANG', 'Setup VScode for language specific development.'
-  def setup(lang)
-    begin
-      @lang_obj = Factory.create(lang)
-      @lang_obj.install_ext
-    rescue Exception => e
-      puts "Exception: #{e}"
-      return 1
-    end
+    puts 'Initiating extension installation...'.colorize(:yellow)
+    @lang_obj.install_ext
   end
 
   desc 'teardown LANG', 'Teardown VScode for language specific development.'
+  option :proj, aliases: ['-p'], type: :string, desc: 'The project specific snippets to use.'
+  option :rm_ext, type: :boolean, desc: 'Remove extensions.'
   def teardown(lang)
     @lang_obj = Factory.create(lang)
+
+    puts "Removing '#{options[:proj].capitalize}' snippets from the workspace.".colorize(:yellow)
+    @lang_obj.remove_snippet(options[:proj])
+
+    return unless options[:rm_ext]
+
     @lang_obj.uninstall_ext
   end
 end
