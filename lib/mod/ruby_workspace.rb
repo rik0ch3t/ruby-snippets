@@ -17,6 +17,7 @@ class RubyWorkspace
 
   # Copy selected project snippets to .vscode
   def add_snippet(proj)
+    create_vscode_dir
     workspace_path = File.join(Dir.pwd, '.vscode')
     snip_files_path = File.join(Dir.pwd, "projects/#{proj}/#{proj}.code-snippets")
     FileUtils.cp_r(snip_files_path, workspace_path)
@@ -24,7 +25,7 @@ class RubyWorkspace
 
   # Remove selected project snippets from .vscode
   def remove_snippet(proj)
-    workspace_path = File.join(Dir.pwd, '.vscode')
+    workspace_path = File.join(Dir.pwd, '/.vscode')
     FileUtils.rm_r("#{workspace_path}/#{proj}.code-snippets")
   end
 
@@ -42,10 +43,13 @@ class RubyWorkspace
     end
   end
 
+  private
+
   # Creates a .vscode directory if it does not exist.
   def create_vscode_dir
     workspace_path = File.join(Dir.pwd, '.vscode')
-    return if workspace_path
+
+    return if Dir.exist?('.vscode')
 
     Dir.mkdir(workspace_path)
   end

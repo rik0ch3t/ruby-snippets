@@ -13,7 +13,6 @@ class CLI < Thor
     @lang_obj = Factory.create(lang)
 
     puts "Adding '#{options[:proj].capitalize}' snippets to the workspace".colorize(:yellow)
-    @lang_obj.create_vscode_dir
     @lang_obj.add_snippet(options[:proj])
 
     return unless options[:add_ext]
